@@ -5,7 +5,7 @@ const util = require('util');
 
 const readFile = (file) => {
     return util.promisify(fs.readFile)(file)
-        .then(data => data) // smells
+        .then(data => data)
         .catch(error => console.error(error));
 };
 
@@ -20,16 +20,4 @@ const writeFile = (file, data) => {
 };
 
 module.exports = {readFile, upperCase, writeFile};
-
-// const readWriteFile = (file) => {
-//     util.promisify(fs.readFile)(file)
-//         .then(data => {
-//             data = data.toString().toUpperCase();
-//             util.promisify(fs.writeFile)(file, Buffer.from(data))
-//                 .then(() => {
-//                     console.log('saved message');
-//                     return 'saved message';
-//                 }).catch(error => console.error(error));
-//         }).catch(error => console.error(error));
-// }
 
