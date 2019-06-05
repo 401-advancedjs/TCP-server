@@ -2,10 +2,10 @@
 
 const net = require('net');
 
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 const server = net.createServer();
 
-server.listen(port, () => console.log(`Server up on ${port}`) );
+server.listen(PORT, () => console.log(`Server up on ${PORT}`) );
 
 let socketPool = {};
 
@@ -20,8 +20,10 @@ server.on('connection', (socket) => {
 
 let dispatchEvent = (buffer) => {
   let text = buffer.toString().trim();
+  const [eventType, eventPayload] = text.split(':');
+  console.log(eventType, eventPayload);
   for (let socket in socketPool) {
-    socketPool[socket].write(`${event} ${text}`);
+    socketPool[socket].write(`${eventType}:${eventPayload}`);
   }
 };
 
