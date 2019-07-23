@@ -9,7 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "events": "^3.0.0",
     "jest": "^23.6.0"
   }
 }
